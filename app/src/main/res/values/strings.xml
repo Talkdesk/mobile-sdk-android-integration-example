@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">IntegrationExample</string>
+    <string name="fragment_example_get_support_button">Get Support</string>
+</resources>
