@@ -3,13 +3,17 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.marcelorbenites.integrationexample"
+        applicationId "com.talkdesk.integrationexample"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "DEVELOPER_KEY", "\"${project.TALKDESK_INTEGRATION_SAMPLE_DEVELOPER_KEY}\""
+        buildConfigField "String", "API_HOSTNAME", "\"${project.API_HOSTNAME}\""
+        buildConfigField "String", "API_APP_ID", "\"${project.API_APP_ID}\""
+        buildConfigField "String", "API_AUTH_USERNAME", "\"${project.API_AUTH_USERNAME}\""
+        buildConfigField "String", "API_AUTH_PASSWORD", "\"${project.API_AUTH_PASSWORD}\""
+
     }
     buildTypes {
         release {
@@ -20,10 +24,10 @@ android {
 }
 
 repositories {
-    maven { url 'http://mobile-dev.talkdeskapp.com/android/maven' }
+    maven { url 'https://mobile-dev.talkdeskapp.com/android/maven' }
 }
 
 dependencies {
-    implementation 'com.talkdesk:sdk-ui:0.1.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.talkdesk:sdk-ui:0.2.0'
 }
