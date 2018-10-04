@@ -18,7 +18,7 @@ import java.util.HashMap;
 
 public class ExampleFragment extends Fragment {
 
-    private Talkdesk talkdesk;
+    public static final String INTENTION_NAME = "simple_callback";
     private FragmentManager fragmentManager;
     private Button button;
 
@@ -26,7 +26,6 @@ public class ExampleFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentManager = getFragmentManager();
-        talkdesk = ((ExampleApplication) getActivity().getApplicationContext()).getTalkdesk();
     }
 
     @Nullable
@@ -47,10 +46,10 @@ public class ExampleFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                talkdesk.getInteractionChannel("simple_callback").open(new HashMap<String, Property>(), false, new HashMap<String, InputValue>());
+                Talkdesk.getInstance().getInteractionChannel(INTENTION_NAME).open(new HashMap<String, Property>(), false, new HashMap<String, InputValue>());
 
                 fragmentManager.beginTransaction().replace(R.id.activity_example_container, new InteractionChannelFragment.Builder()
-                        .setIntention("simple_callback")
+                        .setIntention(INTENTION_NAME)
                         .build()).addToBackStack("bla").commit();
             }
         });
