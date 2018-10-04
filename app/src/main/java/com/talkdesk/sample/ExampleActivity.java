@@ -1,4 +1,4 @@
-package com.talkdesk.integrationexample;
+package com.talkdesk.sample;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

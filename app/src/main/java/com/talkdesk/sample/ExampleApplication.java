@@ -1,4 +1,4 @@
-package com.talkdesk.integrationexample;
+package com.talkdesk.sample;
 
 import android.app.Application;
 import android.os.Handler;
