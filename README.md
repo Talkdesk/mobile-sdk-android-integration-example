@@ -1,5 +1,6 @@
-# Android SDK Integration Sample
-This is a sample that shows how an application can integrate with Android Talkdesk SDK.
+# Talkdesk SDK Android Integration Example
+
+This repository contains a simple Android project that integrates with Talkdesk SDK in order to run an interaction. It implements the application-specific part of the [authorization mechanism](http://mobile-dev.talkdeskapp.com/android/docs/release/0.2.0/tutorials/tutorial.html#Authorization) of the SDK and can be used with the [Talkdesk SDK Ruby Server Sample](https://www.github.com/Talkdesk/mobile-sdk-ruby-server-sample).
 
 ## How to run
 This sample app is designed to work with the [reference authentication server](https://github.com/Talkdesk/mobile-sdk-ruby-server-sample).
