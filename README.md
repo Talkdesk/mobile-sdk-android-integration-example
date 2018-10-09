@@ -26,5 +26,5 @@ For more information check the [SDK documentation](http://mobile-dev.talkdeskapp
 In the following diagram you can see how the authentication is performed and which components are involved.
 ![Talkdesk Id Authentication](art/auth.png)
 
-Also we recommend more sophisticated but much secure implementation with push notifications.
+For a Production-grade application we recommend the more sophisticated but more secure implementation with push notifications.
 ![Talkdesk Id Push Authentication](art/auth-push.png)
