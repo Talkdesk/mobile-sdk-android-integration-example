@@ -3,7 +3,7 @@
 This repository contains a simple Android project that integrates with Talkdesk SDK in order to run an interaction. It implements the application-specific part of the [authorization mechanism](http://mobile-dev.talkdeskapp.com/android/docs/release/0.2.0/tutorials/tutorial.html#Authorization) of the SDK and can be used with the [Talkdesk Mobile SDK Customer Authentication Service sample](https://github.com/Talkdesk/mobile-sdk-customer-ruby-authentication-service-example).
 
 ## How to run
-This sample app is designed to work with the [[Talkdesk Mobile SDK Customer Authentication Service sample](https://github.com/Talkdesk/mobile-sdk-customer-ruby-authentication-service-example).
+This sample app is designed to work with the [Talkdesk Mobile SDK Customer Authentication Service sample](https://github.com/Talkdesk/mobile-sdk-customer-ruby-authentication-service-example).
 It's recommended to configure the authentication server first in order to have a better understanding of the properties that 
 should be provided to have the sample Android application running.
 
