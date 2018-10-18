@@ -6,13 +6,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import com.talkdesk.sdk.InteractionChannel;
 import com.talkdesk.sdk.Talkdesk;
+import com.talkdesk.sdk.ui.InteractionChannelFragment;
 import com.talkdesk.sdk.ui.InteractionChannelFragmentContainer;
 import org.jetbrains.annotations.NotNull;
 
-public class ExampleActivity extends AppCompatActivity implements InteractionChannelFragmentContainer {
+public class ExampleActivity extends AppCompatActivity implements InteractionChannelFragmentContainer, ExampleNavigator {
 
     private UserCancellationListener listener;
     private FragmentManager fragmentManager;
+    private String displayedIntention;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,14 +37,16 @@ public class ExampleActivity extends AppCompatActivity implements InteractionCha
     }
 
     @Override
-    public void onInteractionChannelClosed() {
-        fragmentManager.popBackStack();
+    public void onInteractionChannelClosed(@NotNull String intention, boolean reopen) {
+        if (intention.equals(displayedIntention) && !reopen) {
+            fragmentManager.popBackStack();
+        }
     }
 
     @Override
     public void onBackPressed() {
-        if (listener != null) {
-            listener.onUserCancelled();
+        if (listener != null && displayedIntention != null) {
+            listener.onUserCancelled(displayedIntention);
         } else {
             super.onBackPressed();
         }
@@ -56,5 +60,20 @@ public class ExampleActivity extends AppCompatActivity implements InteractionCha
     @Override
     public void unregisterUserCancellationListener() {
         this.listener = null;
+    }
+
+    @Override
+    public void navigateToInteractionChannelView(String intention) {
+        displayedIntention = intention;
+        fragmentManager
+                .beginTransaction()
+                .replace(
+                        R.id.activity_example_container,
+                        new InteractionChannelFragment.Builder()
+                                .setIntention(intention)
+                                .build()
+                )
+                .addToBackStack(intention)
+                .commit();
     }
 }

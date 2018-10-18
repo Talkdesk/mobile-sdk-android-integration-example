@@ -1,10 +1,10 @@
 package com.talkdesk.sample;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +12,21 @@ import android.widget.Button;
 import com.talkdesk.sdk.InputValue;
 import com.talkdesk.sdk.Property;
 import com.talkdesk.sdk.Talkdesk;
-import com.talkdesk.sdk.ui.InteractionChannelFragment;
 
 import java.util.HashMap;
 
 public class ExampleFragment extends Fragment {
 
     public static final String INTENTION_NAME = "simple_callback";
-    private FragmentManager fragmentManager;
     private Button button;
+    private ExampleNavigator navigator;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        fragmentManager = getFragmentManager();
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof ExampleNavigator) {
+            navigator = (ExampleNavigator) context;
+        }
     }
 
     @Nullable
@@ -47,10 +48,7 @@ public class ExampleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Talkdesk.getInstance().getInteractionChannel(INTENTION_NAME).open(new HashMap<String, Property>(), false, new HashMap<String, InputValue>());
-
-                fragmentManager.beginTransaction().replace(R.id.activity_example_container, new InteractionChannelFragment.Builder()
-                        .setIntention(INTENTION_NAME)
-                        .build()).addToBackStack("bla").commit();
+                navigator.navigateToInteractionChannelView(INTENTION_NAME);
             }
         });
     }
@@ -65,5 +63,11 @@ public class ExampleFragment extends Fragment {
     public void onDestroyView() {
         button = null;
         super.onDestroyView();
+    }
+
+    @Override
+    public void onDetach() {
+        navigator = null;
+        super.onDetach();
     }
 }

@@ -21,7 +21,6 @@ public class ExampleApplication extends Application {
         Talkdesk.setup(new Talkdesk.Builder(getApplicationContext())
                 .enableLogging(true)
                 .setAuthorizationManager(authorizationManager)
-                .enableLogging(true)
                 .build());
     }
 }
